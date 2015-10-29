@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,7 +14,7 @@ namespace Tests
 {
     public partial class AsyncTests
     {
-        [TestInitialize]
+        [SetUp]
         public void InitTests()
         {
             TaskScheduler.UnobservedTaskException += (o, e) =>
@@ -23,7 +23,7 @@ namespace Tests
         }
 
         /*
-        [TestMethod]
+        [Test]
         public void TestPushPopAsync()
         {
             var stack = new Stack<int>();
@@ -96,7 +96,7 @@ namespace Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CorrectDispose()
         {
             var disposed = new TaskCompletionSource<bool>();
@@ -116,7 +116,7 @@ namespace Tests
             Assert.IsFalse(e.MoveNext().Result);
         }
 
-        [TestMethod]
+        [Test]
         public void DisposesUponError()
         {
             var disposed = new TaskCompletionSource<bool>();
@@ -135,7 +135,7 @@ namespace Tests
             Assert.IsTrue(disposed.Task.Result);
         }
 
-        [TestMethod]
+        [Test]
         public void CorrectCancel()
         {
             var disposed = new TaskCompletionSource<bool>();
@@ -175,7 +175,7 @@ namespace Tests
             Assert.IsFalse(e.MoveNext().Result);
         }
 
-        [TestMethod]
+        [Test]
         public void CanCancelMoveNext()
         {
             var evt = new ManualResetEvent(false);
@@ -206,7 +206,7 @@ namespace Tests
             yield return 42;
         }
 
-        [TestMethod]
+        [Test]
         public void TakeOneFromSelectMany()
         {
             var enumerable = AsyncEnumerable
@@ -218,7 +218,7 @@ namespace Tests
             Assert.AreEqual("Check", enumerable.First().Result);
         }
 
-        [TestMethod]
+        [Test]
         public void SelectManyDisposeInvokedOnlyOnce()
         {
             var disposeCounter = new DisposeCounter();
@@ -229,7 +229,7 @@ namespace Tests
             Assert.AreEqual(1, disposeCounter.DisposeCount);
         }
 
-        [TestMethod]
+        [Test]
         public void SelectManyInnerDispose()
         {
             var disposes = Enumerable.Range(0, 10).Select(_ => new DisposeCounter()).ToList();

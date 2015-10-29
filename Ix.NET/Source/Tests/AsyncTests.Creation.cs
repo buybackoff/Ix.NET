@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Threading.Tasks;
 using System.Threading;
 
@@ -21,14 +21,14 @@ namespace Tests
 
     public partial class AsyncTests
     {
-        [TestMethod]
+        [Test]
         public void Return()
         {
             var xs = AsyncEnumerable.Return(42);
             HasNext(xs.GetEnumerator(), 42);
         }
 
-        [TestMethod]
+        [Test]
         public void Never()
         {
             var xs = AsyncEnumerable.Never<int>();
@@ -39,14 +39,14 @@ namespace Tests
             e.Dispose();
         }
 
-        [TestMethod]
+        [Test]
         public void Empty1()
         {
             var xs = AsyncEnumerable.Empty<int>();
             NoNext(xs.GetEnumerator());
         }
 
-        [TestMethod]
+        [Test]
         public void Empty2()
         {
             var xs = AsyncEnumerable.Empty<int>();
@@ -56,13 +56,13 @@ namespace Tests
             AssertThrows<InvalidOperationException>(() => Nop(e.Current));
         }
 
-        [TestMethod]
+        [Test]
         public void Throw_Null()
         {
             AssertThrows<ArgumentNullException>(() => AsyncEnumerable.Throw<int>(null));
         }
 
-        [TestMethod]
+        [Test]
         public void Throw()
         {
             var ex = new Exception("Bang");
@@ -77,13 +77,13 @@ namespace Tests
         {
         }
 
-        [TestMethod]
+        [Test]
         public void Range_Null()
         {
             AssertThrows<ArgumentOutOfRangeException>(() => AsyncEnumerable.Range(0, -1));
         }
 
-        [TestMethod]
+        [Test]
         public void Range1()
         {
             var xs = AsyncEnumerable.Range(2, 5);
@@ -97,7 +97,7 @@ namespace Tests
             NoNext(e);
         }
 
-        [TestMethod]
+        [Test]
         public void Range2()
         {
             var xs = AsyncEnumerable.Range(2, 0);
@@ -106,13 +106,13 @@ namespace Tests
             NoNext(e);
         }
 
-        [TestMethod]
+        [Test]
         public void Repeat_Null()
         {
             AssertThrows<ArgumentOutOfRangeException>(() => AsyncEnumerable.Repeat(0, -1));
         }
 
-        [TestMethod]
+        [Test]
         public void Repeat1()
         {
             var xs = AsyncEnumerable.Repeat(2, 5);
@@ -126,7 +126,7 @@ namespace Tests
             NoNext(e);
         }
 
-        [TestMethod]
+        [Test]
         public void Repeat2()
         {
             var xs = AsyncEnumerable.Repeat(2, 0);
@@ -135,7 +135,7 @@ namespace Tests
             NoNext(e);
         }
 
-        [TestMethod]
+        [Test]
         public void Repeat3()
         {
             var xs = AsyncEnumerable.Repeat(2);
@@ -149,13 +149,13 @@ namespace Tests
             e.Dispose();
         }
 
-        [TestMethod]
+        [Test]
         public void Defer_Null()
         {
             AssertThrows<ArgumentNullException>(() => AsyncEnumerable.Defer<int>(null));
         }
 
-        [TestMethod]
+        [Test]
         public void Defer1()
         {
             var x = 0;
@@ -175,7 +175,7 @@ namespace Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void Generate_Null()
         {
             AssertThrows<ArgumentNullException>(() => AsyncEnumerable.Generate<int, int>(0, null, x => x, x => x));
@@ -183,7 +183,7 @@ namespace Tests
             AssertThrows<ArgumentNullException>(() => AsyncEnumerable.Generate<int, int>(0, x => true, x => x, null));
         }
 
-        [TestMethod]
+        [Test]
         public void Generate1()
         {
             var xs = AsyncEnumerable.Generate(0, x => x < 5, x => x + 1, x => x * x);
@@ -198,7 +198,7 @@ namespace Tests
             e.Dispose();
         }
 
-        [TestMethod]
+        [Test]
         public void Generate2()
         {
             var ex = new Exception("Bang!");
@@ -208,7 +208,7 @@ namespace Tests
             AssertThrows<Exception>(() => e.MoveNext().Wait(), ex_ => ((AggregateException)ex_).InnerExceptions.Single() == ex);
         }
 
-        [TestMethod]
+        [Test]
         public void Generate3()
         {
             var ex = new Exception("Bang!");
@@ -219,7 +219,7 @@ namespace Tests
             AssertThrows<Exception>(() => e.MoveNext().Wait(), ex_ => ((AggregateException)ex_).InnerExceptions.Single() == ex);
         }
 
-        [TestMethod]
+        [Test]
         public void Generate4()
         {
             var ex = new Exception("Bang!");
@@ -230,14 +230,14 @@ namespace Tests
             AssertThrows<Exception>(() => e.MoveNext().Wait(), ex_ => ((AggregateException)ex_).InnerExceptions.Single() == ex);
         }
 
-        [TestMethod]
+        [Test]
         public void Using_Null()
         {
             AssertThrows<ArgumentNullException>(() => AsyncEnumerable.Using<int, IDisposable>(null, _ => null));
             AssertThrows<ArgumentNullException>(() => AsyncEnumerable.Using<int, IDisposable>(() => new MyD(null), null));
         }
 
-        [TestMethod]
+        [Test]
         public void Using1()
         {
             var i = 0;
@@ -258,7 +258,7 @@ namespace Tests
             Assert.AreEqual(1, i);
         }
 
-        [TestMethod]
+        [Test]
         public void Using2()
         {
             var i = 0;
@@ -282,7 +282,7 @@ namespace Tests
             Assert.AreEqual(1, d);
         }
 
-        [TestMethod]
+        [Test]
         public void Using3()
         {
             var ex = new Exception("Bang!");
@@ -305,7 +305,7 @@ namespace Tests
             Assert.AreEqual(1, d);
         }
 
-        [TestMethod]
+        [Test]
         public void Using4()
         {
             var i = 0;
@@ -331,7 +331,7 @@ namespace Tests
             Assert.IsTrue(disposed.Task.Result);
         }
 
-        [TestMethod]
+        [Test]
         public void Using5()
         {
             var ex = new Exception("Bang!");
@@ -357,7 +357,7 @@ namespace Tests
             Assert.IsTrue(disposed.Task.Result);
         }
 
-        [TestMethod]
+        [Test]
         public void Using6()
         {
             var i = 0;

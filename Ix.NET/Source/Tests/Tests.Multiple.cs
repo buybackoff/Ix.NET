@@ -3,20 +3,20 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Tests
 {
     public partial class Tests
     {
-        [TestMethod]
+        [Test]
         public void Concat_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Concat(default(IEnumerable<int>[])));
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Concat(default(IEnumerable<IEnumerable<int>>)));
         }
 
-        [TestMethod]
+        [Test]
         public void Concat1()
         {
             var res = new[]
@@ -28,7 +28,7 @@ namespace Tests
             Assert.IsTrue(Enumerable.SequenceEqual(res, new[] { 1, 2, 3, 4, 5 }));
         }
 
-        [TestMethod]
+        [Test]
         public void Concat2()
         {
             var i = 0;
@@ -46,7 +46,7 @@ namespace Tests
             }));
         }
 
-        [TestMethod]
+        [Test]
         public void Concat3()
         {
             var res = EnumerableEx.Concat(
@@ -57,14 +57,14 @@ namespace Tests
             Assert.IsTrue(Enumerable.SequenceEqual(res, new[] { 1, 2, 3, 4, 5 }));
         }
 
-        [TestMethod]
+        [Test]
         public void SelectMany_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.SelectMany<int, int>(null, new[] { 1 }));
             AssertThrows<ArgumentNullException>(() => EnumerableEx.SelectMany<int, int>(new[] { 1 }, null));
         }
 
-        [TestMethod]
+        [Test]
         public void SelectMany()
         {
             var res = new[] { 1, 2 }.SelectMany(new[] { 'a', 'b', 'c' }).ToList();

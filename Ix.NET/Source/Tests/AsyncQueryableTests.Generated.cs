@@ -6,14 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Tests
 {
-	[TestClass]
+	[TestFixture]
 	public class AsyncQueryableTests
 	{
-		[TestMethod]
+		[Test]
 		public void Aggregate1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Aggregate<int>(default(IAsyncQueryable<int>), (int arg0, int arg1) => default(int)), ane => ane.ParamName == "source");
@@ -23,7 +23,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Aggregate2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Aggregate<int>(default(IAsyncQueryable<int>), (int arg0, int arg1) => default(int), CancellationToken.None), ane => ane.ParamName == "source");
@@ -33,7 +33,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Aggregate3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Aggregate<int, int>(default(IAsyncQueryable<int>), 1, (int arg0, int arg1) => default(int)), ane => ane.ParamName == "source");
@@ -43,7 +43,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Aggregate4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Aggregate<int, int>(default(IAsyncQueryable<int>), 1, (int arg0, int arg1) => default(int), CancellationToken.None), ane => ane.ParamName == "source");
@@ -53,7 +53,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Aggregate5()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Aggregate<int, int, int>(default(IAsyncQueryable<int>), 1, (int arg0, int arg1) => default(int), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -64,7 +64,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Aggregate6()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Aggregate<int, int, int>(default(IAsyncQueryable<int>), 1, (int arg0, int arg1) => default(int), (int arg0) => default(int), CancellationToken.None), ane => ane.ParamName == "source");
@@ -75,7 +75,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void All1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.All<int>(default(IAsyncQueryable<int>), (int arg0) => true), ane => ane.ParamName == "source");
@@ -85,7 +85,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void All2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.All<int>(default(IAsyncQueryable<int>), (int arg0) => true, CancellationToken.None), ane => ane.ParamName == "source");
@@ -95,7 +95,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Any1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Any<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -104,7 +104,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Any2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Any<int>(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -113,7 +113,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Any3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Any<int>(default(IAsyncQueryable<int>), (int arg0) => true), ane => ane.ParamName == "source");
@@ -123,7 +123,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Any4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Any<int>(default(IAsyncQueryable<int>), (int arg0) => true, CancellationToken.None), ane => ane.ParamName == "source");
@@ -133,7 +133,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -142,7 +142,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<int?>)), ane => ane.ParamName == "source");
@@ -151,7 +151,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<long>)), ane => ane.ParamName == "source");
@@ -160,7 +160,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<long?>)), ane => ane.ParamName == "source");
@@ -169,7 +169,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average5()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<double>)), ane => ane.ParamName == "source");
@@ -178,7 +178,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average6()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<double?>)), ane => ane.ParamName == "source");
@@ -187,7 +187,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average7()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<float>)), ane => ane.ParamName == "source");
@@ -196,7 +196,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average8()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<float?>)), ane => ane.ParamName == "source");
@@ -205,7 +205,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average9()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<decimal>)), ane => ane.ParamName == "source");
@@ -214,7 +214,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average10()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<decimal?>)), ane => ane.ParamName == "source");
@@ -223,7 +223,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average11()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -232,7 +232,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average12()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<int?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -241,7 +241,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average13()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<long>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -250,7 +250,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average14()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<long?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -259,7 +259,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average15()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<double>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -268,7 +268,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average16()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<double?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -277,7 +277,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average17()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<float>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -286,7 +286,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average18()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<float?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -295,7 +295,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average19()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<decimal>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -304,7 +304,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average20()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average(default(IAsyncQueryable<decimal?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -313,7 +313,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average21()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<int>)), ane => ane.ParamName == "source");
@@ -323,7 +323,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average22()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -333,7 +333,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average23()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(long)), ane => ane.ParamName == "source");
@@ -343,7 +343,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average24()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<long>)), ane => ane.ParamName == "source");
@@ -353,7 +353,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average25()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(double)), ane => ane.ParamName == "source");
@@ -363,7 +363,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average26()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<double>)), ane => ane.ParamName == "source");
@@ -373,7 +373,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average27()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(float)), ane => ane.ParamName == "source");
@@ -383,7 +383,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average28()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<float>)), ane => ane.ParamName == "source");
@@ -393,7 +393,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average29()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(decimal)), ane => ane.ParamName == "source");
@@ -403,7 +403,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average30()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<decimal>)), ane => ane.ParamName == "source");
@@ -413,7 +413,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average31()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -423,7 +423,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average32()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(int), CancellationToken.None), ane => ane.ParamName == "source");
@@ -433,7 +433,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average33()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(long), CancellationToken.None), ane => ane.ParamName == "source");
@@ -443,7 +443,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average34()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<long>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -453,7 +453,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average35()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(double), CancellationToken.None), ane => ane.ParamName == "source");
@@ -463,7 +463,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average36()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<double>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -473,7 +473,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average37()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(float), CancellationToken.None), ane => ane.ParamName == "source");
@@ -483,7 +483,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average38()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<float>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -493,7 +493,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average39()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(decimal), CancellationToken.None), ane => ane.ParamName == "source");
@@ -503,7 +503,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Average40()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Average<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<decimal>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -513,7 +513,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Buffer1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Buffer<int>(default(IAsyncQueryable<int>), 1), ane => ane.ParamName == "source");
@@ -523,7 +523,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Buffer2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Buffer<int>(default(IAsyncQueryable<int>), 1, 1), ane => ane.ParamName == "source");
@@ -533,7 +533,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Cast1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Cast<int>(default(IAsyncQueryable<object>)), ane => ane.ParamName == "source");
@@ -543,7 +543,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Catch1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Catch<int, Exception>(default(IAsyncQueryable<int>), (Exception arg0) => new int[] { default(int) }.ToAsyncEnumerable()), ane => ane.ParamName == "source");
@@ -554,7 +554,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Catch2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Catch<int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable()), ane => ane.ParamName == "first");
@@ -565,7 +565,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Concat1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Concat<int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable()), ane => ane.ParamName == "first");
@@ -576,7 +576,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Contains1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Contains<int>(default(IAsyncQueryable<int>), 1), ane => ane.ParamName == "source");
@@ -585,7 +585,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Contains2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Contains<int>(default(IAsyncQueryable<int>), 1, CancellationToken.None), ane => ane.ParamName == "source");
@@ -594,7 +594,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Contains3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Contains<int>(default(IAsyncQueryable<int>), 1, EqualityComparer<int>.Default), ane => ane.ParamName == "source");
@@ -604,7 +604,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Contains4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Contains<int>(default(IAsyncQueryable<int>), 1, EqualityComparer<int>.Default, CancellationToken.None), ane => ane.ParamName == "source");
@@ -614,7 +614,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Count1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Count<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -623,7 +623,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Count2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Count<int>(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -632,7 +632,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Count3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Count<int>(default(IAsyncQueryable<int>), (int arg0) => true), ane => ane.ParamName == "source");
@@ -642,7 +642,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Count4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Count<int>(default(IAsyncQueryable<int>), (int arg0) => true, CancellationToken.None), ane => ane.ParamName == "source");
@@ -652,7 +652,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void DefaultIfEmpty1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.DefaultIfEmpty<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -662,7 +662,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void DefaultIfEmpty2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.DefaultIfEmpty<int>(default(IAsyncQueryable<int>), 1), ane => ane.ParamName == "source");
@@ -672,7 +672,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Distinct1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Distinct<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -682,7 +682,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Distinct2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Distinct<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -693,7 +693,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Distinct3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Distinct<int>(default(IAsyncQueryable<int>), EqualityComparer<int>.Default), ane => ane.ParamName == "source");
@@ -704,7 +704,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Distinct4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Distinct<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), EqualityComparer<int>.Default), ane => ane.ParamName == "source");
@@ -716,7 +716,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void DistinctUntilChanged1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.DistinctUntilChanged<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -726,7 +726,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void DistinctUntilChanged2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.DistinctUntilChanged<int>(default(IAsyncQueryable<int>), EqualityComparer<int>.Default), ane => ane.ParamName == "source");
@@ -737,7 +737,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void DistinctUntilChanged3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.DistinctUntilChanged<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -748,7 +748,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void DistinctUntilChanged4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.DistinctUntilChanged<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), EqualityComparer<int>.Default), ane => ane.ParamName == "source");
@@ -760,7 +760,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Do1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Do<int>(default(IAsyncQueryable<int>), (int arg0) => Console.WriteLine()), ane => ane.ParamName == "source");
@@ -771,7 +771,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Do2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Do<int>(default(IAsyncQueryable<int>), new NopObserver<int>()), ane => ane.ParamName == "source");
@@ -782,7 +782,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Do3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Do<int>(default(IAsyncQueryable<int>), (int arg0) => Console.WriteLine(), () => { }), ane => ane.ParamName == "source");
@@ -794,7 +794,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Do4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Do<int>(default(IAsyncQueryable<int>), (int arg0) => Console.WriteLine(), (Exception arg0) => Console.WriteLine()), ane => ane.ParamName == "source");
@@ -806,7 +806,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Do5()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Do<int>(default(IAsyncQueryable<int>), (int arg0) => Console.WriteLine(), (Exception arg0) => Console.WriteLine(), () => { }), ane => ane.ParamName == "source");
@@ -819,7 +819,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ElementAt1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ElementAt<int>(default(IAsyncQueryable<int>), 1), ane => ane.ParamName == "source");
@@ -828,7 +828,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ElementAt2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ElementAt<int>(default(IAsyncQueryable<int>), 1, CancellationToken.None), ane => ane.ParamName == "source");
@@ -837,7 +837,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ElementAtOrDefault1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ElementAtOrDefault<int>(default(IAsyncQueryable<int>), 1), ane => ane.ParamName == "source");
@@ -846,7 +846,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ElementAtOrDefault2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ElementAtOrDefault<int>(default(IAsyncQueryable<int>), 1, CancellationToken.None), ane => ane.ParamName == "source");
@@ -855,7 +855,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Except1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Except<int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable()), ane => ane.ParamName == "first");
@@ -866,7 +866,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Except2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Except<int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable(), EqualityComparer<int>.Default), ane => ane.ParamName == "first");
@@ -878,7 +878,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Expand1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Expand<int>(default(IAsyncQueryable<int>), (int arg0) => new int[] { default(int) }.ToAsyncEnumerable()), ane => ane.ParamName == "source");
@@ -890,7 +890,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Finally1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Finally<int>(default(IAsyncQueryable<int>), () => { }), ane => ane.ParamName == "source");
@@ -901,7 +901,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void First1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.First<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -910,7 +910,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void First2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.First<int>(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -919,7 +919,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void First3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.First<int>(default(IAsyncQueryable<int>), (int arg0) => true), ane => ane.ParamName == "source");
@@ -929,7 +929,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void First4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.First<int>(default(IAsyncQueryable<int>), (int arg0) => true, CancellationToken.None), ane => ane.ParamName == "source");
@@ -939,7 +939,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void FirstOrDefault1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.FirstOrDefault<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -948,7 +948,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void FirstOrDefault2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.FirstOrDefault<int>(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -957,7 +957,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void FirstOrDefault3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.FirstOrDefault<int>(default(IAsyncQueryable<int>), (int arg0) => true), ane => ane.ParamName == "source");
@@ -967,7 +967,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void FirstOrDefault4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.FirstOrDefault<int>(default(IAsyncQueryable<int>), (int arg0) => true, CancellationToken.None), ane => ane.ParamName == "source");
@@ -977,7 +977,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void GroupBy1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.GroupBy<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -988,7 +988,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void GroupBy2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.GroupBy<int, int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -1000,7 +1000,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void GroupBy3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.GroupBy<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), EqualityComparer<int>.Default), ane => ane.ParamName == "source");
@@ -1012,7 +1012,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void GroupBy4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.GroupBy<int, int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), (int arg0, IAsyncEnumerable<int> arg1) => default(int)), ane => ane.ParamName == "source");
@@ -1024,7 +1024,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void GroupBy5()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.GroupBy<int, int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), (int arg0) => default(int), EqualityComparer<int>.Default), ane => ane.ParamName == "source");
@@ -1037,7 +1037,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void GroupBy6()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.GroupBy<int, int, int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), (int arg0) => default(int), (int arg0, IAsyncEnumerable<int> arg1) => default(int)), ane => ane.ParamName == "source");
@@ -1050,7 +1050,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void GroupBy7()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.GroupBy<int, int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), (int arg0, IAsyncEnumerable<int> arg1) => default(int), EqualityComparer<int>.Default), ane => ane.ParamName == "source");
@@ -1063,7 +1063,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void GroupBy8()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.GroupBy<int, int, int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), (int arg0) => default(int), (int arg0, IAsyncEnumerable<int> arg1) => default(int), EqualityComparer<int>.Default), ane => ane.ParamName == "source");
@@ -1077,7 +1077,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void GroupJoin1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.GroupJoin<int, int, int, int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable(), (int arg0) => default(int), (int arg0) => default(int), (int arg0, IAsyncEnumerable<int> arg1) => default(int)), ane => ane.ParamName == "outer");
@@ -1091,7 +1091,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void GroupJoin2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.GroupJoin<int, int, int, int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable(), (int arg0) => default(int), (int arg0) => default(int), (int arg0, IAsyncEnumerable<int> arg1) => default(int), EqualityComparer<int>.Default), ane => ane.ParamName == "outer");
@@ -1106,7 +1106,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void IgnoreElements1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.IgnoreElements<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -1116,7 +1116,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Intersect1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Intersect<int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable()), ane => ane.ParamName == "first");
@@ -1127,7 +1127,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Intersect2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Intersect<int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable(), EqualityComparer<int>.Default), ane => ane.ParamName == "first");
@@ -1139,7 +1139,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void IsEmpty1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.IsEmpty<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -1148,7 +1148,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void IsEmpty2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.IsEmpty<int>(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1157,7 +1157,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Join1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Join<int, int, int, int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable(), (int arg0) => default(int), (int arg0) => default(int), (int arg0, int arg1) => default(int)), ane => ane.ParamName == "outer");
@@ -1171,7 +1171,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Join2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Join<int, int, int, int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable(), (int arg0) => default(int), (int arg0) => default(int), (int arg0, int arg1) => default(int), EqualityComparer<int>.Default), ane => ane.ParamName == "outer");
@@ -1186,7 +1186,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Last1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Last<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -1195,7 +1195,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Last2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Last<int>(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1204,7 +1204,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Last3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Last<int>(default(IAsyncQueryable<int>), (int arg0) => true), ane => ane.ParamName == "source");
@@ -1214,7 +1214,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Last4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Last<int>(default(IAsyncQueryable<int>), (int arg0) => true, CancellationToken.None), ane => ane.ParamName == "source");
@@ -1224,7 +1224,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void LastOrDefault1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.LastOrDefault<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -1233,7 +1233,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void LastOrDefault2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.LastOrDefault<int>(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1242,7 +1242,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void LastOrDefault3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.LastOrDefault<int>(default(IAsyncQueryable<int>), (int arg0) => true), ane => ane.ParamName == "source");
@@ -1252,7 +1252,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void LastOrDefault4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.LastOrDefault<int>(default(IAsyncQueryable<int>), (int arg0) => true, CancellationToken.None), ane => ane.ParamName == "source");
@@ -1262,7 +1262,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void LongCount1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.LongCount<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -1271,7 +1271,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void LongCount2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.LongCount<int>(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1280,7 +1280,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void LongCount3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.LongCount<int>(default(IAsyncQueryable<int>), (int arg0) => true), ane => ane.ParamName == "source");
@@ -1290,7 +1290,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void LongCount4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.LongCount<int>(default(IAsyncQueryable<int>), (int arg0) => true, CancellationToken.None), ane => ane.ParamName == "source");
@@ -1300,7 +1300,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -1309,7 +1309,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<long>)), ane => ane.ParamName == "source");
@@ -1318,7 +1318,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<double>)), ane => ane.ParamName == "source");
@@ -1327,7 +1327,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<float>)), ane => ane.ParamName == "source");
@@ -1336,7 +1336,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max5()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<decimal>)), ane => ane.ParamName == "source");
@@ -1345,7 +1345,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max6()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<int?>)), ane => ane.ParamName == "source");
@@ -1354,7 +1354,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max7()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<long?>)), ane => ane.ParamName == "source");
@@ -1363,7 +1363,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max8()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<double?>)), ane => ane.ParamName == "source");
@@ -1372,7 +1372,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max9()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<float?>)), ane => ane.ParamName == "source");
@@ -1381,7 +1381,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max10()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<decimal?>)), ane => ane.ParamName == "source");
@@ -1390,7 +1390,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max11()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -1399,7 +1399,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max12()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1408,7 +1408,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max13()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<long>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1417,7 +1417,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max14()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<double>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1426,7 +1426,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max15()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<float>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1435,7 +1435,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max16()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<decimal>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1444,7 +1444,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max17()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<int?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1453,7 +1453,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max18()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<long?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1462,7 +1462,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max19()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<double?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1471,7 +1471,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max20()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<float?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1480,7 +1480,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max21()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max(default(IAsyncQueryable<decimal?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1489,7 +1489,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max22()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1498,7 +1498,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max23()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), Comparer<int>.Default), ane => ane.ParamName == "source");
@@ -1508,7 +1508,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max24()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -1518,7 +1518,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max25()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(long)), ane => ane.ParamName == "source");
@@ -1528,7 +1528,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max26()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(double)), ane => ane.ParamName == "source");
@@ -1538,7 +1538,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max27()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(float)), ane => ane.ParamName == "source");
@@ -1548,7 +1548,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max28()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(decimal)), ane => ane.ParamName == "source");
@@ -1558,7 +1558,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max29()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<int>)), ane => ane.ParamName == "source");
@@ -1568,7 +1568,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max30()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<long>)), ane => ane.ParamName == "source");
@@ -1578,7 +1578,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max31()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<double>)), ane => ane.ParamName == "source");
@@ -1588,7 +1588,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max32()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<float>)), ane => ane.ParamName == "source");
@@ -1598,7 +1598,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max33()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<decimal>)), ane => ane.ParamName == "source");
@@ -1608,7 +1608,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max34()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -1618,7 +1618,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max35()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1628,7 +1628,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max36()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), Comparer<int>.Default, CancellationToken.None), ane => ane.ParamName == "source");
@@ -1638,7 +1638,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max37()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(int), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1648,7 +1648,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max38()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(long), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1658,7 +1658,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max39()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(double), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1668,7 +1668,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max40()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(float), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1678,7 +1678,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max41()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(decimal), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1688,7 +1688,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max42()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1698,7 +1698,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max43()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<long>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1708,7 +1708,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max44()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<double>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1718,7 +1718,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max45()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<float>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1728,7 +1728,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Max46()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Max<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<decimal>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1738,7 +1738,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void MaxBy1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.MaxBy<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -1748,7 +1748,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void MaxBy2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.MaxBy<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1758,7 +1758,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void MaxBy3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.MaxBy<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), Comparer<int>.Default), ane => ane.ParamName == "source");
@@ -1769,7 +1769,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void MaxBy4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.MaxBy<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), Comparer<int>.Default, CancellationToken.None), ane => ane.ParamName == "source");
@@ -1780,7 +1780,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -1789,7 +1789,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<long>)), ane => ane.ParamName == "source");
@@ -1798,7 +1798,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<double>)), ane => ane.ParamName == "source");
@@ -1807,7 +1807,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<float>)), ane => ane.ParamName == "source");
@@ -1816,7 +1816,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min5()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<decimal>)), ane => ane.ParamName == "source");
@@ -1825,7 +1825,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min6()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<int?>)), ane => ane.ParamName == "source");
@@ -1834,7 +1834,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min7()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<long?>)), ane => ane.ParamName == "source");
@@ -1843,7 +1843,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min8()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<double?>)), ane => ane.ParamName == "source");
@@ -1852,7 +1852,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min9()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<float?>)), ane => ane.ParamName == "source");
@@ -1861,7 +1861,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min10()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<decimal?>)), ane => ane.ParamName == "source");
@@ -1870,7 +1870,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min11()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -1879,7 +1879,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min12()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1888,7 +1888,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min13()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<long>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1897,7 +1897,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min14()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<double>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1906,7 +1906,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min15()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<float>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1915,7 +1915,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min16()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<decimal>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1924,7 +1924,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min17()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<int?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1933,7 +1933,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min18()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<long?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1942,7 +1942,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min19()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<double?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1951,7 +1951,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min20()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<float?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1960,7 +1960,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min21()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min(default(IAsyncQueryable<decimal?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1969,7 +1969,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min22()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -1978,7 +1978,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min23()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<double>)), ane => ane.ParamName == "source");
@@ -1988,7 +1988,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min24()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<float>)), ane => ane.ParamName == "source");
@@ -1998,7 +1998,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min25()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), Comparer<int>.Default), ane => ane.ParamName == "source");
@@ -2008,7 +2008,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min26()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -2018,7 +2018,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min27()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(long)), ane => ane.ParamName == "source");
@@ -2028,7 +2028,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min28()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(double)), ane => ane.ParamName == "source");
@@ -2038,7 +2038,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min29()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(float)), ane => ane.ParamName == "source");
@@ -2048,7 +2048,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min30()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(decimal)), ane => ane.ParamName == "source");
@@ -2058,7 +2058,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min31()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<int>)), ane => ane.ParamName == "source");
@@ -2068,7 +2068,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min32()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<long>)), ane => ane.ParamName == "source");
@@ -2078,7 +2078,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min33()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<decimal>)), ane => ane.ParamName == "source");
@@ -2088,7 +2088,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min34()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -2098,7 +2098,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min35()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(int), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2108,7 +2108,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min36()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(long), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2118,7 +2118,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min37()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(double), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2128,7 +2128,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min38()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(float), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2138,7 +2138,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min39()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(decimal), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2148,7 +2148,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min40()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2158,7 +2158,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min41()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<long>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2168,7 +2168,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min42()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<double>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2178,7 +2178,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min43()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<float>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2188,7 +2188,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min44()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<decimal>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2198,7 +2198,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min45()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2208,7 +2208,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Min46()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Min<int>(default(IAsyncQueryable<int>), Comparer<int>.Default, CancellationToken.None), ane => ane.ParamName == "source");
@@ -2218,7 +2218,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void MinBy1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.MinBy<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -2228,7 +2228,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void MinBy2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.MinBy<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2238,7 +2238,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void MinBy3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.MinBy<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), Comparer<int>.Default), ane => ane.ParamName == "source");
@@ -2249,7 +2249,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void MinBy4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.MinBy<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), Comparer<int>.Default, CancellationToken.None), ane => ane.ParamName == "source");
@@ -2260,7 +2260,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void OfType1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.OfType<int>(default(IAsyncQueryable<object>)), ane => ane.ParamName == "source");
@@ -2270,7 +2270,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void OnErrorResumeNext1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.OnErrorResumeNext<int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable()), ane => ane.ParamName == "first");
@@ -2281,7 +2281,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void OrderBy1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.OrderBy<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -2290,7 +2290,7 @@ namespace Tests
 			var res = AsyncQueryable.OrderBy<int, int>(new int[] { default(int) }.ToAsyncEnumerable().AsAsyncQueryable(), (int arg0) => default(int));
 		}
 
-		[TestMethod]
+		[Test]
 		public void OrderBy2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.OrderBy<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), Comparer<int>.Default), ane => ane.ParamName == "source");
@@ -2300,7 +2300,7 @@ namespace Tests
 			var res = AsyncQueryable.OrderBy<int, int>(new int[] { default(int) }.ToAsyncEnumerable().AsAsyncQueryable(), (int arg0) => default(int), Comparer<int>.Default);
 		}
 
-		[TestMethod]
+		[Test]
 		public void OrderByDescending1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.OrderByDescending<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -2309,7 +2309,7 @@ namespace Tests
 			var res = AsyncQueryable.OrderByDescending<int, int>(new int[] { default(int) }.ToAsyncEnumerable().AsAsyncQueryable(), (int arg0) => default(int));
 		}
 
-		[TestMethod]
+		[Test]
 		public void OrderByDescending2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.OrderByDescending<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), Comparer<int>.Default), ane => ane.ParamName == "source");
@@ -2319,7 +2319,7 @@ namespace Tests
 			var res = AsyncQueryable.OrderByDescending<int, int>(new int[] { default(int) }.ToAsyncEnumerable().AsAsyncQueryable(), (int arg0) => default(int), Comparer<int>.Default);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Repeat1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Repeat<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -2330,7 +2330,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Repeat2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Repeat<int>(default(IAsyncQueryable<int>), 1), ane => ane.ParamName == "source");
@@ -2341,7 +2341,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Retry1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Retry<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -2351,7 +2351,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Retry2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Retry<int>(default(IAsyncQueryable<int>), 1), ane => ane.ParamName == "source");
@@ -2361,7 +2361,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Reverse1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Reverse<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -2371,7 +2371,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Scan1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Scan<int>(default(IAsyncQueryable<int>), (int arg0, int arg1) => default(int)), ane => ane.ParamName == "source");
@@ -2382,7 +2382,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Scan2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Scan<int, int>(default(IAsyncQueryable<int>), 1, (int arg0, int arg1) => default(int)), ane => ane.ParamName == "source");
@@ -2393,7 +2393,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Select1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Select<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -2404,7 +2404,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Select2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Select<int, int>(default(IAsyncQueryable<int>), (int arg0, int arg1) => default(int)), ane => ane.ParamName == "source");
@@ -2415,7 +2415,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SelectMany1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SelectMany<int, int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable()), ane => ane.ParamName == "source");
@@ -2426,7 +2426,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SelectMany2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SelectMany<int, int>(default(IAsyncQueryable<int>), (int arg0) => new int[] { default(int) }.ToAsyncEnumerable()), ane => ane.ParamName == "source");
@@ -2437,7 +2437,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SelectMany3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SelectMany<int, int>(default(IAsyncQueryable<int>), (int arg0, int arg1) => new int[] { default(int) }.ToAsyncEnumerable()), ane => ane.ParamName == "source");
@@ -2448,7 +2448,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SelectMany4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SelectMany<int, int, int>(default(IAsyncQueryable<int>), (int arg0) => new int[] { default(int) }.ToAsyncEnumerable(), (int arg0, int arg1) => default(int)), ane => ane.ParamName == "source");
@@ -2460,7 +2460,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SelectMany5()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SelectMany<int, int, int>(default(IAsyncQueryable<int>), (int arg0, int arg1) => new int[] { default(int) }.ToAsyncEnumerable(), (int arg0, int arg1) => default(int)), ane => ane.ParamName == "source");
@@ -2472,7 +2472,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SequenceEqual1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SequenceEqual<int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable()), ane => ane.ParamName == "first");
@@ -2482,7 +2482,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SequenceEqual2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SequenceEqual<int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable(), CancellationToken.None), ane => ane.ParamName == "first");
@@ -2492,7 +2492,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SequenceEqual3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SequenceEqual<int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable(), EqualityComparer<int>.Default), ane => ane.ParamName == "first");
@@ -2503,7 +2503,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SequenceEqual4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SequenceEqual<int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable(), EqualityComparer<int>.Default, CancellationToken.None), ane => ane.ParamName == "first");
@@ -2514,7 +2514,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Single1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Single<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -2523,7 +2523,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Single2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Single<int>(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2532,7 +2532,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Single3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Single<int>(default(IAsyncQueryable<int>), (int arg0) => true), ane => ane.ParamName == "source");
@@ -2542,7 +2542,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Single4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Single<int>(default(IAsyncQueryable<int>), (int arg0) => true, CancellationToken.None), ane => ane.ParamName == "source");
@@ -2552,7 +2552,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SingleOrDefault1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SingleOrDefault<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -2561,7 +2561,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SingleOrDefault2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SingleOrDefault<int>(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2570,7 +2570,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SingleOrDefault3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SingleOrDefault<int>(default(IAsyncQueryable<int>), (int arg0) => true), ane => ane.ParamName == "source");
@@ -2580,7 +2580,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SingleOrDefault4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SingleOrDefault<int>(default(IAsyncQueryable<int>), (int arg0) => true, CancellationToken.None), ane => ane.ParamName == "source");
@@ -2590,7 +2590,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Skip1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Skip<int>(default(IAsyncQueryable<int>), 1), ane => ane.ParamName == "source");
@@ -2600,7 +2600,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SkipLast1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SkipLast<int>(default(IAsyncQueryable<int>), 1), ane => ane.ParamName == "source");
@@ -2610,7 +2610,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SkipWhile1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SkipWhile<int>(default(IAsyncQueryable<int>), (int arg0) => true), ane => ane.ParamName == "source");
@@ -2621,7 +2621,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void SkipWhile2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.SkipWhile<int>(default(IAsyncQueryable<int>), (int arg0, int arg1) => true), ane => ane.ParamName == "source");
@@ -2632,7 +2632,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void StartWith1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.StartWith<int>(default(IAsyncQueryable<int>), new int[] { default(int) }), ane => ane.ParamName == "source");
@@ -2643,7 +2643,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -2652,7 +2652,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<long>)), ane => ane.ParamName == "source");
@@ -2661,7 +2661,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<double>)), ane => ane.ParamName == "source");
@@ -2670,7 +2670,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<float>)), ane => ane.ParamName == "source");
@@ -2679,7 +2679,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum5()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<decimal>)), ane => ane.ParamName == "source");
@@ -2688,7 +2688,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum6()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<int?>)), ane => ane.ParamName == "source");
@@ -2697,7 +2697,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum7()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<long?>)), ane => ane.ParamName == "source");
@@ -2706,7 +2706,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum8()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<double?>)), ane => ane.ParamName == "source");
@@ -2715,7 +2715,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum9()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<float?>)), ane => ane.ParamName == "source");
@@ -2724,7 +2724,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum10()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<decimal?>)), ane => ane.ParamName == "source");
@@ -2733,7 +2733,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum11()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2742,7 +2742,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum12()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<long>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2751,7 +2751,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum13()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<double>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2760,7 +2760,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum14()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<float>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2769,7 +2769,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum15()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<decimal>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2778,7 +2778,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum16()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<int?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2787,7 +2787,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum17()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<long?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2796,7 +2796,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum18()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<double?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2805,7 +2805,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum19()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<float?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2814,7 +2814,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum20()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum(default(IAsyncQueryable<decimal?>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2823,7 +2823,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum21()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -2833,7 +2833,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum22()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(long)), ane => ane.ParamName == "source");
@@ -2843,7 +2843,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum23()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(double)), ane => ane.ParamName == "source");
@@ -2853,7 +2853,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum24()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(float)), ane => ane.ParamName == "source");
@@ -2863,7 +2863,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum25()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(decimal)), ane => ane.ParamName == "source");
@@ -2873,7 +2873,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum26()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<int>)), ane => ane.ParamName == "source");
@@ -2883,7 +2883,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum27()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<long>)), ane => ane.ParamName == "source");
@@ -2893,7 +2893,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum28()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<double>)), ane => ane.ParamName == "source");
@@ -2903,7 +2903,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum29()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<float>)), ane => ane.ParamName == "source");
@@ -2913,7 +2913,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum30()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<decimal>)), ane => ane.ParamName == "source");
@@ -2923,7 +2923,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum31()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(int), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2933,7 +2933,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum32()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(long), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2943,7 +2943,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum33()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(double), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2953,7 +2953,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum34()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(float), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2963,7 +2963,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum35()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(decimal), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2973,7 +2973,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum36()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2983,7 +2983,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum37()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<long>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -2993,7 +2993,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum38()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<double>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -3003,7 +3003,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum39()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<float>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -3013,7 +3013,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Sum40()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Sum<int>(default(IAsyncQueryable<int>), (int arg0) => default(Nullable<decimal>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -3023,7 +3023,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Take1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Take<int>(default(IAsyncQueryable<int>), 1), ane => ane.ParamName == "source");
@@ -3033,7 +3033,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void TakeLast1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.TakeLast<int>(default(IAsyncQueryable<int>), 1), ane => ane.ParamName == "source");
@@ -3043,7 +3043,7 @@ namespace Tests
             AssertEx.SucceedOrFailProper(() => task.Wait());
         }
 
-		[TestMethod]
+		[Test]
 		public void TakeWhile1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.TakeWhile<int>(default(IAsyncQueryable<int>), (int arg0) => true), ane => ane.ParamName == "source");
@@ -3054,7 +3054,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void TakeWhile2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.TakeWhile<int>(default(IAsyncQueryable<int>), (int arg0, int arg1) => true), ane => ane.ParamName == "source");
@@ -3065,7 +3065,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ThenBy1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ThenBy<int, int>(default(IOrderedAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -3074,7 +3074,7 @@ namespace Tests
 			var res = AsyncQueryable.ThenBy<int, int>(new int[0].ToAsyncEnumerable().AsAsyncQueryable().OrderBy(x => x), (int arg0) => default(int));
 		}
 
-		[TestMethod]
+		[Test]
 		public void ThenBy2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ThenBy<int, int>(default(IOrderedAsyncQueryable<int>), (int arg0) => default(int), Comparer<int>.Default), ane => ane.ParamName == "source");
@@ -3084,7 +3084,7 @@ namespace Tests
 			var res = AsyncQueryable.ThenBy<int, int>(new int[0].ToAsyncEnumerable().AsAsyncQueryable().OrderBy(x => x), (int arg0) => default(int), Comparer<int>.Default);
 		}
 
-		[TestMethod]
+		[Test]
 		public void ThenByDescending1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ThenByDescending<int, int>(default(IOrderedAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -3093,7 +3093,7 @@ namespace Tests
 			var res = AsyncQueryable.ThenByDescending<int, int>(new int[0].ToAsyncEnumerable().AsAsyncQueryable().OrderBy(x => x), (int arg0) => default(int));
 		}
 
-		[TestMethod]
+		[Test]
 		public void ThenByDescending2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ThenByDescending<int, int>(default(IOrderedAsyncQueryable<int>), (int arg0) => default(int), Comparer<int>.Default), ane => ane.ParamName == "source");
@@ -3103,7 +3103,7 @@ namespace Tests
 			var res = AsyncQueryable.ThenByDescending<int, int>(new int[0].ToAsyncEnumerable().AsAsyncQueryable().OrderBy(x => x), (int arg0) => default(int), Comparer<int>.Default);
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToArray1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToArray<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -3112,7 +3112,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToArray2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToArray<int>(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -3121,7 +3121,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToDictionary1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToDictionary<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -3131,7 +3131,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToDictionary2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToDictionary<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), CancellationToken.None), ane => ane.ParamName == "source");
@@ -3141,7 +3141,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToDictionary3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToDictionary<int, int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -3152,7 +3152,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToDictionary4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToDictionary<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), EqualityComparer<int>.Default), ane => ane.ParamName == "source");
@@ -3163,7 +3163,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToDictionary5()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToDictionary<int, int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), (int arg0) => default(int), CancellationToken.None), ane => ane.ParamName == "source");
@@ -3174,7 +3174,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToDictionary6()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToDictionary<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), EqualityComparer<int>.Default, CancellationToken.None), ane => ane.ParamName == "source");
@@ -3185,7 +3185,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToDictionary7()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToDictionary<int, int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), (int arg0) => default(int), EqualityComparer<int>.Default), ane => ane.ParamName == "source");
@@ -3197,7 +3197,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToDictionary8()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToDictionary<int, int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), (int arg0) => default(int), EqualityComparer<int>.Default, CancellationToken.None), ane => ane.ParamName == "source");
@@ -3209,7 +3209,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToList1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToList<int>(default(IAsyncQueryable<int>)), ane => ane.ParamName == "source");
@@ -3218,7 +3218,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToList2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToList<int>(default(IAsyncQueryable<int>), CancellationToken.None), ane => ane.ParamName == "source");
@@ -3227,7 +3227,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToLookup1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToLookup<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -3237,7 +3237,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToLookup2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToLookup<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), CancellationToken.None), ane => ane.ParamName == "source");
@@ -3247,7 +3247,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToLookup3()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToLookup<int, int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), (int arg0) => default(int)), ane => ane.ParamName == "source");
@@ -3258,7 +3258,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToLookup4()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToLookup<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), EqualityComparer<int>.Default), ane => ane.ParamName == "source");
@@ -3269,7 +3269,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToLookup5()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToLookup<int, int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), (int arg0) => default(int), CancellationToken.None), ane => ane.ParamName == "source");
@@ -3280,7 +3280,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToLookup6()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToLookup<int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), EqualityComparer<int>.Default, CancellationToken.None), ane => ane.ParamName == "source");
@@ -3291,7 +3291,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToLookup7()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToLookup<int, int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), (int arg0) => default(int), EqualityComparer<int>.Default), ane => ane.ParamName == "source");
@@ -3303,7 +3303,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void ToLookup8()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.ToLookup<int, int, int>(default(IAsyncQueryable<int>), (int arg0) => default(int), (int arg0) => default(int), EqualityComparer<int>.Default, CancellationToken.None), ane => ane.ParamName == "source");
@@ -3315,7 +3315,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => res.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Union1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Union<int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable()), ane => ane.ParamName == "first");
@@ -3326,7 +3326,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Union2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Union<int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable(), EqualityComparer<int>.Default), ane => ane.ParamName == "first");
@@ -3338,7 +3338,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Where1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Where<int>(default(IAsyncQueryable<int>), (int arg0) => true), ane => ane.ParamName == "source");
@@ -3349,7 +3349,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Where2()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Where<int>(default(IAsyncQueryable<int>), (int arg0, int arg1) => true), ane => ane.ParamName == "source");
@@ -3360,7 +3360,7 @@ namespace Tests
 			AssertEx.SucceedOrFailProper(() => task.Wait());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Zip1()
 		{
 			AssertEx.Throws<ArgumentNullException>(() => AsyncQueryable.Zip<int, int, int>(default(IAsyncQueryable<int>), new int[] { default(int) }.ToAsyncEnumerable(), (int arg0, int arg1) => default(int)), ane => ane.ParamName == "first");

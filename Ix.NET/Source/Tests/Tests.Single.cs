@@ -3,19 +3,19 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Tests
 {
     public partial class Tests
     {
-        [TestMethod]
+        [Test]
         public void Hide_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Hide<int>(null));
         }
 
-        [TestMethod]
+        [Test]
         public void Hide()
         {
             var xs = new List<int> { 1, 2, 3 };
@@ -24,7 +24,7 @@ namespace Tests
             Assert.IsTrue(xs.SequenceEqual(ys));
         }
 
-        [TestMethod]
+        [Test]
         public void ForEach_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.ForEach<int>(null, x => { }));
@@ -33,7 +33,7 @@ namespace Tests
             AssertThrows<ArgumentNullException>(() => EnumerableEx.ForEach<int>(new[] { 1 }, default(Action<int, int>)));
         }
 
-        [TestMethod]
+        [Test]
         public void ForEach1()
         {
             var n = 0;
@@ -41,7 +41,7 @@ namespace Tests
             Assert.AreEqual(5 + 6 + 7, n);
         }
 
-        [TestMethod]
+        [Test]
         public void ForEach2()
         {
             var n = 0;
@@ -49,7 +49,7 @@ namespace Tests
             Assert.AreEqual(5 * 0 + 6 * 1 + 7 * 2, n);
         }
 
-        [TestMethod]
+        [Test]
         public void Buffer_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Buffer<int>(null, 5));
@@ -59,7 +59,7 @@ namespace Tests
             AssertThrows<ArgumentOutOfRangeException>(() => EnumerableEx.Buffer<int>(new[] { 1 }, 0, 3));
         }
 
-        [TestMethod]
+        [Test]
         public void Buffer1()
         {
             var rng = Enumerable.Range(0, 10);
@@ -73,7 +73,7 @@ namespace Tests
             Assert.IsTrue(res[3].SequenceEqual(new[] { 9 }));
         }
 
-        [TestMethod]
+        [Test]
         public void Buffer2()
         {
             var rng = Enumerable.Range(0, 10);
@@ -85,7 +85,7 @@ namespace Tests
             Assert.IsTrue(res[1].SequenceEqual(new[] { 5, 6, 7, 8, 9 }));
         }
 
-        [TestMethod]
+        [Test]
         public void Buffer3()
         {
             var rng = Enumerable.Empty<int>();
@@ -94,7 +94,7 @@ namespace Tests
             Assert.AreEqual(0, res.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void Buffer4()
         {
             var rng = Enumerable.Range(0, 10);
@@ -109,7 +109,7 @@ namespace Tests
             Assert.IsTrue(res[4].SequenceEqual(new[] { 8, 9 }));
         }
 
-        [TestMethod]
+        [Test]
         public void Buffer5()
         {
             var rng = Enumerable.Range(0, 10);
@@ -122,7 +122,7 @@ namespace Tests
             Assert.IsTrue(res[2].SequenceEqual(new[] { 8, 9 }));
         }
 
-        [TestMethod]
+        [Test]
         public void Do_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Do<int>(null, _ => { }));
@@ -143,7 +143,7 @@ namespace Tests
 #endif
         }
 
-        [TestMethod]
+        [Test]
         public void Do1()
         {
             var n = 0;
@@ -151,7 +151,7 @@ namespace Tests
             Assert.AreEqual(45, n);
         }
 
-        [TestMethod]
+        [Test]
         public void Do2()
         {
             var n = 0;
@@ -159,7 +159,7 @@ namespace Tests
             Assert.AreEqual(90, n);
         }
 
-        [TestMethod]
+        [Test]
         public void Do3()
         {
             var ex = new MyException();
@@ -171,7 +171,7 @@ namespace Tests
         }
 
 #if !NO_RXINTERFACES
-        [TestMethod]
+        [Test]
         public void Do4()
         {
             var obs = new MyObserver();
@@ -203,7 +203,7 @@ namespace Tests
         }
 #endif
 
-        [TestMethod]
+        [Test]
         public void Do5()
         {
             var sum = 0;
@@ -214,13 +214,13 @@ namespace Tests
             Assert.AreEqual(45, sum);
         }
 
-        [TestMethod]
+        [Test]
         public void StartWith_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.StartWith<int>(null, 5));
         }
 
-        [TestMethod]
+        [Test]
         public void StartWith1()
         {
             var e = Enumerable.Range(1, 5);
@@ -228,7 +228,7 @@ namespace Tests
             Assert.IsTrue(Enumerable.SequenceEqual(r, Enumerable.Range(0, 6)));
         }
 
-        [TestMethod]
+        [Test]
         public void StartWith2()
         {
             var oops = false;
@@ -237,21 +237,21 @@ namespace Tests
             Assert.IsFalse(oops);
         }
 
-        [TestMethod]
+        [Test]
         public void Expand_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Expand<int>(null, _ => new[] { _ }));
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Expand<int>(new[] { 1 }, null));
         }
 
-        [TestMethod]
+        [Test]
         public void Expand1()
         {
             var res = new[] { 0 }.Expand(x => new[] { x + 1 }).Take(10).ToList();
             Assert.IsTrue(Enumerable.SequenceEqual(res, Enumerable.Range(0, 10)));
         }
 
-        [TestMethod]
+        [Test]
         public void Expand2()
         {
             var res = new[] { 3 }.Expand(x => Enumerable.Range(0, x)).ToList();
@@ -265,7 +265,7 @@ namespace Tests
             Assert.IsTrue(Enumerable.SequenceEqual(res, exp));
         }
 
-        [TestMethod]
+        [Test]
         public void Distinct_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Distinct<int, int>(null, _ => _));
@@ -275,14 +275,14 @@ namespace Tests
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Distinct<int, int>(new[] { 1 }, _ => _, null));
         }
 
-        [TestMethod]
+        [Test]
         public void Distinct1()
         {
             var res = Enumerable.Range(0, 10).Distinct(x => x % 5).ToList();
             Assert.IsTrue(Enumerable.SequenceEqual(res, Enumerable.Range(0, 5)));
         }
 
-        [TestMethod]
+        [Test]
         public void Distinct2()
         {
             var res = Enumerable.Range(0, 10).Distinct(x => x % 5, new MyEqualityComparer()).ToList();
@@ -302,7 +302,7 @@ namespace Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void DistinctUntilChanged_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.DistinctUntilChanged<int>(null));
@@ -315,27 +315,27 @@ namespace Tests
             AssertThrows<ArgumentNullException>(() => EnumerableEx.DistinctUntilChanged<int, int>(new[] { 1 }, _ => _, null));
         }
 
-        [TestMethod]
+        [Test]
         public void DistinctUntilChanged1()
         {
             var res = new[] { 1, 2, 2, 3, 3, 3, 2, 2, 1 }.DistinctUntilChanged().ToList();
             Assert.IsTrue(Enumerable.SequenceEqual(res, new[] { 1, 2, 3, 2, 1 }));
         }
 
-        [TestMethod]
+        [Test]
         public void DistinctUntilChanged2()
         {
             var res = new[] { 1, 1, 2, 3, 4, 5, 5, 6, 7 }.DistinctUntilChanged(x => x / 2).ToList();
             Assert.IsTrue(Enumerable.SequenceEqual(res, new[] { 1, 2, 4, 6 }));
         }
 
-        [TestMethod]
+        [Test]
         public void IgnoreElements_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.IgnoreElements<int>(null));
         }
 
-        [TestMethod]
+        [Test]
         public void IgnoreElements()
         {
             var n = 0;
@@ -343,14 +343,14 @@ namespace Tests
             Assert.AreEqual(10, n);
         }
 
-        [TestMethod]
+        [Test]
         public void TakeLast_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.TakeLast<int>(null, 5));
             AssertThrows<ArgumentOutOfRangeException>(() => EnumerableEx.TakeLast<int>(new[] { 1 }, -1));
         }
 
-        [TestMethod]
+        [Test]
         public void TakeLast_TakeZero()
         {
             var e = Enumerable.Range(1, 5) ;
@@ -358,7 +358,7 @@ namespace Tests
             Assert.IsTrue(Enumerable.SequenceEqual(r, Enumerable.Empty<int>()));
         }
 
-        [TestMethod]
+        [Test]
         public void TakeLast_Empty()
         {
             var e = Enumerable.Empty<int>();
@@ -366,7 +366,7 @@ namespace Tests
             Assert.IsTrue(Enumerable.SequenceEqual(r, e));
         }
 
-        [TestMethod]
+        [Test]
         public void TakeLast_All()
         {
             var e = Enumerable.Range(0, 5);
@@ -374,7 +374,7 @@ namespace Tests
             Assert.IsTrue(Enumerable.SequenceEqual(r, e));
         }
 
-        [TestMethod]
+        [Test]
         public void TakeLast_Part()
         {
             var e = Enumerable.Range(0, 5);
@@ -382,14 +382,14 @@ namespace Tests
             Assert.IsTrue(Enumerable.SequenceEqual(r, e.Skip(2)));
         }
 
-        [TestMethod]
+        [Test]
         public void SkipLast_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.SkipLast<int>(null, 5));
             AssertThrows<ArgumentOutOfRangeException>(() => EnumerableEx.SkipLast<int>(new[] { 1 }, -1));
         }
 
-        [TestMethod]
+        [Test]
         public void SkipLast_Empty()
         {
             var e = Enumerable.Empty<int>();
@@ -397,7 +397,7 @@ namespace Tests
             Assert.IsTrue(Enumerable.SequenceEqual(r, e));
         }
 
-        [TestMethod]
+        [Test]
         public void SkipLast_All()
         {
             var e = Enumerable.Range(0, 5);
@@ -405,7 +405,7 @@ namespace Tests
             Assert.IsTrue(Enumerable.SequenceEqual(r, e));
         }
 
-        [TestMethod]
+        [Test]
         public void SkipLast_Part()
         {
             var e = Enumerable.Range(0, 5);
@@ -413,7 +413,7 @@ namespace Tests
             Assert.IsTrue(Enumerable.SequenceEqual(r, e.Take(2)));
         }
 
-        [TestMethod]
+        [Test]
         public void Scan_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Scan<int>(null, (x, y) => x + y));
@@ -422,14 +422,14 @@ namespace Tests
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Scan<int, int>(new[] { 1 }, 0, null));
         }
 
-        [TestMethod]
+        [Test]
         public void Scan1()
         {
             var res = Enumerable.Range(0, 5).Scan((n, x) => n + x).ToList();
             Assert.IsTrue(Enumerable.SequenceEqual(res, new[] { 1, 3, 6, 10 }));
         }
 
-        [TestMethod]
+        [Test]
         public void Scan2()
         {
             var res = Enumerable.Range(0, 5).Scan(10, (n, x) => n - x).ToList();

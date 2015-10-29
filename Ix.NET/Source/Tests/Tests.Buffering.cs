@@ -3,20 +3,20 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Collections;
 
 namespace Tests
 {
     public partial class Tests
     {
-        [TestMethod]
+        [Test]
         public void Share_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Share<int>(null));
         }
 
-        [TestMethod]
+        [Test]
         public void Share1()
         {
             var rng = Enumerable.Range(0, 5).Share();
@@ -30,7 +30,7 @@ namespace Tests
             NoNext(e1);
         }
 
-        [TestMethod]
+        [Test]
         public void Share2()
         {
             var rng = Enumerable.Range(0, 5).Share();
@@ -46,7 +46,7 @@ namespace Tests
             NoNext(e1);
         }
 
-        [TestMethod]
+        [Test]
         public void Share3()
         {
             var rng = Enumerable.Range(0, 5).Share();
@@ -63,7 +63,7 @@ namespace Tests
             NoNext(e1);
         }
 
-        //[TestMethod]
+        //[Test]
         public void Share4()
         {
             var rng = Enumerable.Range(0, 5).Share();
@@ -77,7 +77,7 @@ namespace Tests
             Assert.IsFalse(e1.MoveNext());
         }
 
-        [TestMethod]
+        [Test]
         public void Share5()
         {
             var rng = Enumerable.Range(0, 5).Share();
@@ -93,7 +93,7 @@ namespace Tests
             AssertThrows<ObjectDisposedException>(() => ((IEnumerable)rng).GetEnumerator());
         }
 
-        [TestMethod]
+        [Test]
         public void Share6()
         {
             var rng = Enumerable.Range(0, 5).Share();
@@ -103,13 +103,13 @@ namespace Tests
             Assert.AreEqual(0, (int)e1.Current);
         }
 
-        [TestMethod]
+        [Test]
         public void Publish_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Publish<int>(null));
         }
 
-        [TestMethod]
+        [Test]
         public void Publish0()
         {
             var n = 0;
@@ -155,7 +155,7 @@ namespace Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void Publish1()
         {
             var rng = Enumerable.Range(0, 5).Publish();
@@ -169,7 +169,7 @@ namespace Tests
             NoNext(e1);
         }
 
-        [TestMethod]
+        [Test]
         public void Publish2()
         {
             var rng = Enumerable.Range(0, 5).Publish();
@@ -190,7 +190,7 @@ namespace Tests
             NoNext(e2);
         }
 
-        [TestMethod]
+        [Test]
         public void Publish3()
         {
             var rng = Enumerable.Range(0, 5).Publish();
@@ -211,7 +211,7 @@ namespace Tests
             NoNext(e2);
         }
 
-        [TestMethod]
+        [Test]
         public void Publish4()
         {
             var rng = Enumerable.Range(0, 5).Publish();
@@ -229,7 +229,7 @@ namespace Tests
             NoNext(e2);
         }
 
-        [TestMethod]
+        [Test]
         public void Publish5()
         {
             var rng = Enumerable.Range(0, 5).Publish();
@@ -246,7 +246,7 @@ namespace Tests
             NoNext(e2);
         }
 
-        [TestMethod]
+        [Test]
         public void Publish6()
         {
             var ex = new MyException();
@@ -267,7 +267,7 @@ namespace Tests
         {
         }
 
-        [TestMethod]
+        [Test]
         public void Publish7()
         {
             var rng = Enumerable.Range(0, 5).Publish();
@@ -290,7 +290,7 @@ namespace Tests
             NoNext(e3);
         }
 
-        [TestMethod]
+        [Test]
         public void Publish8()
         {
             var rng = Enumerable.Range(0, 5).Publish();
@@ -306,7 +306,7 @@ namespace Tests
             AssertThrows<ObjectDisposedException>(() => ((IEnumerable)rng).GetEnumerator());
         }
 
-        [TestMethod]
+        [Test]
         public void Publish9()
         {
             var rng = Enumerable.Range(0, 5).Publish();
@@ -316,20 +316,20 @@ namespace Tests
             Assert.AreEqual(0, (int)e1.Current);
         }
 
-        [TestMethod]
+        [Test]
         public void Publish10()
         {
             var rnd = Rand().Take(1000).Publish();
             Assert.IsTrue(rnd.Zip(rnd, (l, r) => l == r).All(x => x));
         }
 
-        [TestMethod]
+        [Test]
         public void Memoize_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Memoize<int>(null));
         }
 
-        [TestMethod]
+        [Test]
         public void MemoizeLimited_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Memoize<int>(null, 2));
@@ -337,7 +337,7 @@ namespace Tests
             AssertThrows<ArgumentOutOfRangeException>(() => EnumerableEx.Memoize<int>(new[] { 1 }, -1));
         }
 
-        [TestMethod]
+        [Test]
         public void Memoize0()
         {
             var n = 0;
@@ -373,7 +373,7 @@ namespace Tests
             Assert.AreEqual(10, n);
         }
 
-        [TestMethod]
+        [Test]
         public void Publish11()
         {
             var rng = Enumerable.Range(0, 5).Publish();
@@ -395,7 +395,7 @@ namespace Tests
             NoNext(e3);
         }
 
-        [TestMethod]
+        [Test]
         public void Memoize1()
         {
             var rng = Enumerable.Range(0, 5).Memoize();
@@ -409,7 +409,7 @@ namespace Tests
             NoNext(e1);
         }
 
-        [TestMethod]
+        [Test]
         public void Memoize2()
         {
             var rng = Enumerable.Range(0, 5).Memoize();
@@ -431,7 +431,7 @@ namespace Tests
             NoNext(e2);
         }
 
-        [TestMethod]
+        [Test]
         public void Memoize3()
         {
             var rng = Enumerable.Range(0, 5).Memoize();
@@ -454,7 +454,7 @@ namespace Tests
             NoNext(e2);
         }
 
-        [TestMethod]
+        [Test]
         public void Memoize4()
         {
             var rng = Enumerable.Range(0, 5).Memoize(2);
@@ -473,7 +473,7 @@ namespace Tests
             AssertThrows<InvalidOperationException>(() => e3.MoveNext());
         }
 
-        [TestMethod]
+        [Test]
         public void Memoize6()
         {
             var ex = new MyException();
@@ -490,7 +490,7 @@ namespace Tests
             AssertThrows<MyException>(() => e2.MoveNext());
         }
 
-        [TestMethod]
+        [Test]
         public void Memoize7()
         {
             var rng = Enumerable.Range(0, 5).Memoize();
@@ -515,7 +515,7 @@ namespace Tests
             NoNext(e3);
         }
 
-        [TestMethod]
+        [Test]
         public void Memoize8()
         {
             var rng = Enumerable.Range(0, 5).Memoize();
@@ -531,7 +531,7 @@ namespace Tests
             AssertThrows<ObjectDisposedException>(() => ((IEnumerable)rng).GetEnumerator());
         }
 
-        [TestMethod]
+        [Test]
         public void Memoize9()
         {
             var rng = Enumerable.Range(0, 5).Memoize();
@@ -541,7 +541,7 @@ namespace Tests
             Assert.AreEqual(0, (int)e1.Current);
         }
 
-        [TestMethod]
+        [Test]
         public void Memoize10()
         {
             var rnd = Rand().Take(1000).Memoize();
@@ -556,14 +556,14 @@ namespace Tests
                 yield return s_rand.Next();
         }
 
-        [TestMethod]
+        [Test]
         public void ShareLambda_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Share<int, int>(null, xs => xs));
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Share<int, int>(new[] { 1 }, null));
         }
 
-        [TestMethod]
+        [Test]
         public void ShareLambda()
         {
             var n = 0;
@@ -572,14 +572,14 @@ namespace Tests
             Assert.AreEqual(8, n);
         }
 
-        [TestMethod]
+        [Test]
         public void PublishLambda_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Publish<int, int>(null, xs => xs));
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Publish<int, int>(new[] { 1 }, null));
         }
 
-        [TestMethod]
+        [Test]
         public void PublishLambda()
         {
             var n = 0;
@@ -588,14 +588,14 @@ namespace Tests
             Assert.AreEqual(4, n);
         }
 
-        [TestMethod]
+        [Test]
         public void MemoizeLambda_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Memoize<int, int>(null, xs => xs));
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Memoize<int, int>(new[] { 1 }, null));
         }
 
-        [TestMethod]
+        [Test]
         public void MemoizeLambda()
         {
             var n = 0;
@@ -604,7 +604,7 @@ namespace Tests
             Assert.AreEqual(4, n);
         }
 
-        [TestMethod]
+        [Test]
         public void MemoizeLimitedLambda_Arguments()
         {
             AssertThrows<ArgumentNullException>(() => EnumerableEx.Memoize<int, int>(null, 2, xs => xs));
@@ -613,7 +613,7 @@ namespace Tests
             AssertThrows<ArgumentOutOfRangeException>(() => EnumerableEx.Memoize<int, int>(new[] { 1 }, -1, xs => xs));
         }
 
-        [TestMethod]
+        [Test]
         public void MemoizeLimitedLambda()
         {
             var n = 0;

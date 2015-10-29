@@ -5,21 +5,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Threading;
 
 namespace Tests
 {
     public partial class AsyncTests
     {
-        [TestMethod]
+        [Test]
         public void ToAsyncEnumerable_Null()
         {
             AssertThrows<ArgumentNullException>(() => AsyncEnumerable.ToAsyncEnumerable<int>(default(IEnumerable<int>)));
             AssertThrows<ArgumentNullException>(() => AsyncEnumerable.ToAsyncEnumerable<int>(default(IObservable<int>)));
         }
 
-        [TestMethod]
+        [Test]
         public void ToAsyncEnumerable1()
         {
             var xs = new[] { 1, 2, 3, 4 }.ToAsyncEnumerable();
@@ -31,7 +31,7 @@ namespace Tests
             NoNext(e);
         }
 
-        [TestMethod]
+        [Test]
         public void ToAsyncEnumerable2()
         {
             var ex = new Exception("Bang");
@@ -47,7 +47,7 @@ namespace Tests
             throw e;
         }
 
-        [TestMethod]
+        [Test]
         public void ToAsyncEnumerable3()
         {
             var subscribed = false;
@@ -72,7 +72,7 @@ namespace Tests
             NoNext(e);
         }
 
-        [TestMethod]
+        [Test]
         public void ToAsyncEnumerable4()
         {
             var ex = new Exception("Bang!");
@@ -96,7 +96,7 @@ namespace Tests
             AssertThrows<Exception>(() => e.MoveNext().Wait(), ex_ => ((AggregateException)ex_).InnerExceptions.Single() == ex);
         }
 
-        [TestMethod]
+        [Test]
         public void ToAsyncEnumerable_With_Completed_Task()
         {
             var task = Task.Factory.StartNew(() => 36);
@@ -109,7 +109,7 @@ namespace Tests
             Assert.IsFalse(e.MoveNext().Result);
         }
 
-        [TestMethod]
+        [Test]
         public void ToAsyncEnumerable_With_Faulted_Task()
         {
             var ex = new InvalidOperationException();
@@ -122,7 +122,7 @@ namespace Tests
             AssertThrows<Exception>(() => e.MoveNext().Wait(), ex_ => ((AggregateException)ex_).InnerExceptions.Single() == ex);
         }
 
-        [TestMethod]
+        [Test]
         public void ToAsyncEnumerable_With_Canceled_Task()
         {
             var tcs = new TaskCompletionSource<int>();
@@ -164,27 +164,27 @@ namespace Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ToEnumerable_Null()
         {
             AssertThrows<ArgumentNullException>(() => AsyncEnumerable.ToEnumerable<int>(null));
         }
 
-        [TestMethod]
+        [Test]
         public void ToEnumerable1()
         {
             var xs = AsyncEnumerable.Return(42).ToEnumerable();
             Assert.IsTrue(xs.SequenceEqual(new[] { 42 }));
         }
 
-        [TestMethod]
+        [Test]
         public void ToEnumerable2()
         {
             var xs = AsyncEnumerable.Empty<int>().ToEnumerable();
             Assert.IsTrue(xs.SequenceEqual(new int[0]));
         }
 
-        [TestMethod]
+        [Test]
         public void ToEnumerable3()
         {
             var ex = new Exception("Bang");
@@ -193,13 +193,13 @@ namespace Tests
         }
 
 #if !NO_RXINTERFACES
-        [TestMethod]
+        [Test]
         public void ToObservable_Null()
         {
             AssertThrows<ArgumentNullException>(() => AsyncEnumerable.ToObservable<int>(null));
         }
 
-        [TestMethod]
+        [Test]
         public void ToObservable1()
         {
             var fail = false;
@@ -226,7 +226,7 @@ namespace Tests
             Assert.IsFalse(fail);
         }
 
-        [TestMethod]
+        [Test]
         public void ToObservable2()
         {
             var lst = new List<int>();
@@ -255,7 +255,7 @@ namespace Tests
             Assert.IsTrue(lst.SequenceEqual(new[] { 42 }));
         }
 
-        [TestMethod]
+        [Test]
         public void ToObservable3()
         {
             var lst = new List<int>();
@@ -284,7 +284,7 @@ namespace Tests
             Assert.IsTrue(lst.SequenceEqual(Enumerable.Range(0, 10)));
         }
 
-        [TestMethod]
+        [Test]
         public void ToObservable4()
         {
             var ex1 = new Exception("Bang!");

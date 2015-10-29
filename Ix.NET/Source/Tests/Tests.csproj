@@ -14,10 +14,11 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkProfile />
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseWP8|AnyCPU'">
     <OutputPath>bin\ReleaseWP8\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWP8|AnyCPU'">
     <OutputPath>bin\DebugWP8\</OutputPath>
@@ -28,6 +29,64 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug35|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug40|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug45|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug81|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug8|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugPLLITE|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugPL|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugSL5|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWP7|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release35|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release40|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release45|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release81|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release8|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleasePLLITE|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleasePL|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseSL5|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseWP7|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestPL|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <Import Project="..\Common.targets" />
   <PropertyGroup Condition="'$(BuildPlatform)' == 'SILVERLIGHT' AND !('$(BuildFlavor)' == 'SILVERLIGHTM7')">
@@ -50,14 +109,12 @@
       <HintPath>..\..\..\..\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" Condition=" '$(BuildPlatform)' == 'SILVERLIGHT' Or '$(BuildPlatform)' == 'XNA' " />
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Observable" Condition=" '$(BuildFlavor)' == 'SILVERLIGHTM7' " />
-    <Reference Include="System.Windows" Condition=" '$(BuildPlatform)' == 'SILVERLIGHT' " />
-    <Reference Include="System.Windows.Browser" Condition=" '$(BuildPlatform)' == 'SILVERLIGHT' AND !('$(BuildFlavor)' == 'SILVERLIGHTM7')" />
-    <Reference Include="Microsoft.Silverlight.Testing" Condition=" '$(BuildPlatform)' == 'SILVERLIGHT' AND !('$(BuildFlavor)' == 'SILVERLIGHTM7')">
-      <Private>true</Private>
-    </Reference>
     <Reference Include="System.Windows.Forms" Condition=" '$(BuildPlatform)' == 'DESKTOPCLR' " />
     <Reference Include="WindowsBase" Condition=" '$(BuildPlatform)' == 'DESKTOPCLR' " />
   </ItemGroup>
@@ -69,7 +126,6 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="AssertEx.cs" />
-    <Compile Include="AsyncQueryableTests.Generated.cs" />
     <Compile Include="AsyncTests.Creation.cs" />
     <Compile Include="AsyncTests.cs" />
     <Compile Include="AsyncTests.Conversions.cs" />
@@ -81,7 +137,6 @@
     <Compile Include="NopObserver.cs" />
     <Compile Include="TaskExtTests.cs" />
     <Compile Include="Tests.Imperative.cs" />
-    <Compile Include="Tests.Qbservable.cs" />
     <Compile Include="Tests.Single.cs" />
     <Compile Include="Tests.Multiple.cs" />
     <Compile Include="Tests.Exceptions.cs" />
@@ -92,17 +147,9 @@
     <Compile Include="Tests.Aggregates.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\System.Interactive.Async.Providers\System.Interactive.Async.Providers.csproj">
-      <Project>{b0350cd4-37f7-4508-b67f-d4bb3b9092aa}</Project>
-      <Name>System.Interactive.Async.Providers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\System.Interactive.Async\System.Interactive.Async.csproj" Condition=" '$(BuildFlavor)' == 'DESKTOPCLR40' Or '$(BuildFlavor)' == 'DESKTOPCLR45' ">
       <Project>{7269A578-326A-4C3E-9874-A2D2600095BC}</Project>
       <Name>System.Interactive.Async</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\System.Interactive.Providers\System.Interactive.Providers.csproj" Condition=" '$(BuildFlavor)' != 'SILVERLIGHTM7' And '$(BuildPlatform)' != 'XNA' And '$(Configuration)' != 'TestPL' ">
-      <Project>{6D62E966-469D-4A99-BD43-0A17FA14FB4F}</Project>
-      <Name>System.Interactive.Providers</Name>
     </ProjectReference>
     <ProjectReference Include="..\System.Interactive\System.Interactive.csproj">
       <Project>{8E4B04F0-915E-48F9-9796-76278C6094BD}</Project>
@@ -111,6 +158,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="..\Import.targets" />
 </Project>

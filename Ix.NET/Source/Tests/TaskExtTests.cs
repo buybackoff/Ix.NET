@@ -1,6 +1,6 @@
 ﻿namespace Tests
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -8,7 +8,7 @@
 
     public partial class AsyncTests
     {
-        [TestMethod]
+        [Test]
         public async Task ExceptionHandling_ShouldThrowUnwrappedException()
         {
             try
@@ -31,7 +31,7 @@
             throw new InvalidOperationException();
         }
 
-        [TestMethod]
+        [Test]
         public async Task ExceptionHandling_ShouldThrowUnwrappedException2()
         {
             try

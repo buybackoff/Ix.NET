@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Runtime.CompilerServices;
 using System.Linq.Expressions;
 using System.ComponentModel;
@@ -15,7 +15,7 @@ namespace Tests
 {
     public partial class Tests
     {
-        [TestMethod]
+        [Test]
         public void Queryable_Enumerable_Parity()
         {
             var enu = typeof(EnumerableEx).GetMethods(BindingFlags.Public | BindingFlags.Static).ToList();
@@ -114,28 +114,28 @@ namespace Tests
             return t.Name;
         }
 
-        [TestMethod]
+        [Test]
         public void QueryableRetarget1()
         {
             var res = QueryableEx.Provider.Empty<int>().AsEnumerable().ToList();
             Assert.IsTrue(res.SequenceEqual(new int[0]));
         }
 
-        [TestMethod]
+        [Test]
         public void QueryableRetarget2()
         {
             var res = QueryableEx.Provider.Return(42).AsEnumerable().ToList();
             Assert.IsTrue(res.SequenceEqual(new[] { 42 }));
         }
 
-        [TestMethod]
+        [Test]
         public void QueryableRetarget3()
         {
             var res = Enumerable.Range(0, 10).AsQueryable().TakeLast(2).AsEnumerable().ToList();
             Assert.IsTrue(res.SequenceEqual(new[] { 8, 9 }));
         }
 
-        [TestMethod]
+        [Test]
         public void QueryableRetarget4()
         {
             var res = QueryableEx.Provider.Range(0, 10).AsEnumerable().ToList();

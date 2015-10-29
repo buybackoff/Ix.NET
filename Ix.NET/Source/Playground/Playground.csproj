@@ -52,10 +52,6 @@
       <Project>{7269a578-326a-4c3e-9874-a2d2600095bc}</Project>
       <Name>System.Interactive.Async</Name>
     </ProjectReference>
-    <ProjectReference Include="..\System.Interactive.Providers\System.Interactive.Providers.csproj">
-      <Project>{6d62e966-469d-4a99-bd43-0a17fa14fb4f}</Project>
-      <Name>System.Interactive.Providers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\System.Interactive\System.Interactive.csproj">
       <Project>{8e4b04f0-915e-48f9-9796-76278c6094bd}</Project>
       <Name>System.Interactive</Name>
