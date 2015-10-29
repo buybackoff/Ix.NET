@@ -19,6 +19,7 @@ namespace Tests
         }
     }
 
+    [TestFixture]
     public partial class AsyncTests
     {
         [Test]

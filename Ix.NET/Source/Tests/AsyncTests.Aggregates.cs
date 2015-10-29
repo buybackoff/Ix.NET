@@ -11,6 +11,7 @@ using System.Threading;
 
 namespace Tests
 {
+    [TestFixture]
     public partial class AsyncTests
     {
         [Test]

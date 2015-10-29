@@ -12,6 +12,7 @@ using System.Diagnostics;
 
 namespace Tests
 {
+    [TestFixture]
     public partial class AsyncTests
     {
         [SetUp]
